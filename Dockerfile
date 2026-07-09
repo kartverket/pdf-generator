@@ -1,5 +1,4 @@
-ARG version=8
-FROM gotenberg/gotenberg:${version}
+FROM gotenberg/gotenberg:8
 
 USER root
 
