@@ -24,7 +24,7 @@ jobs:
               run: |
                   version="$(date -u '+%Y.%m.%d-%H.%M')-$(echo "${GITHUB_SHA}" | cut -c1-7)"
                   echo "version=${version}" >> "$GITHUB_OUTPUT"
-                  echo "image=ghcr.io/kartverket/matrikkel-pdf-generering:${version}" >> "$GITHUB_OUTPUT"
+                  echo "image=ghcr.io/kartverket/matrikkel-gotenberg:${version}" >> "$GITHUB_OUTPUT"
 
     package-image:
         name: Build and (conditionally) Push Docker Image
@@ -56,6 +56,8 @@ jobs:
               with:
                   context: .
                   file: Dockerfile
+                  build-args: |
+                      version=8
                   push: ${{ github.ref == 'refs/heads/main' }}
                   tags: ${{ env.image }}
                   cache-from: type=gha
