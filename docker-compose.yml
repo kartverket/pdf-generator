@@ -1,0 +1,21 @@
+services:
+  gotenberg:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: matrikkel-gotenberg
+    container_name: matrikkel-gotenberg
+    ports:
+      - "8089:8089"
+    restart: unless-stopped
+    healthcheck:
+      test:
+        - CMD
+        - curl
+        - --silent
+        - --fail
+        - http://localhost:8089/health
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
