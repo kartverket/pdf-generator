@@ -11,6 +11,11 @@ spec:
     - pdf-generator.atkv3-dev.kartverket-intern.cloud
   replicas: 1
 
+  accessPolicy:
+    inbound:
+      external:
+        - host: "matrikkel-dokument-generering.atkv3-dev.kartverket-intern.cloud"
+
   resources:
     requests:
       cpu: 50m
