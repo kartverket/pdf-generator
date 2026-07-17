@@ -11,6 +11,12 @@ spec:
     - pdf-generator.atkv3-dev.kartverket-intern.cloud
   replicas: 1
 
+  env:
+    - name: XDG_CONFIG_HOME
+      value: "/tmp/.chromium"
+    - name: XDG_CACHE_HOME
+      value: "/tmp/.chromium"
+
   accessPolicy:
     inbound:
       rules:
