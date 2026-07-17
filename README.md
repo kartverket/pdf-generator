@@ -9,6 +9,7 @@ docker compose up --build
 
 - API: http://localhost:8089
 - Helsesjekk: http://localhost:8089/health
+- Maks behandlingstid per konvertering: 2 minutter
 
 ## Eller bygg og kjør direkte
 

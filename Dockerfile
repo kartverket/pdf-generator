@@ -8,4 +8,4 @@ RUN fc-cache -f /usr/local/share/fonts
 
 USER gotenberg
 
-CMD ["gotenberg", "--api-port=8089"]
+CMD ["gotenberg", "--api-port=8089", "--api-timeout=2m"]
