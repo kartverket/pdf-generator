@@ -1,0 +1,41 @@
+apiVersion: skiperator.kartverket.no/v1alpha1
+kind: Application
+
+metadata:
+  name: pdf-generator
+  namespace: matrikkel-main
+spec:
+  image: "{{ image }}"
+  port: 8089
+  ingresses:
+    - pdf-generator.atkv3-prod.kartverket-intern.cloud
+  replicas: 1
+
+  env:
+    - name: XDG_CONFIG_HOME
+      value: "/tmp/.chromium"
+    - name: XDG_CACHE_HOME
+      value: "/tmp/.chromium"
+
+  accessPolicy:
+    inbound:
+      rules:
+        - application: matrikkel-dokument-generering
+
+  resources:
+    requests:
+      cpu: 50m
+      memory: 256Mi
+    limits:
+      memory: 512Mi
+
+  liveness:
+    port: 8089
+    path: /health
+    initialDelay: 10 # default: 0
+    failureThreshold: 6 # default: 3
+  readiness:
+    port: 8089
+    path: /health
+    initialDelay: 10 # default: 0
+    failureThreshold: 6 # default: 3
