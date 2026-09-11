@@ -25,9 +25,9 @@ spec:
   resources:
     requests:
       cpu: 50m
-      memory: 256Mi
+      memory: 2Gi
     limits:
-      memory: 512Mi
+      memory: 4Gi
 
   liveness:
     port: 8089
