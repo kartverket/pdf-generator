@@ -136,7 +136,7 @@ jobs:
         if: github.ref == 'refs/heads/main'
         needs:
             - version
-            - deploy-dev
+            - deploy-betatest
         permissions:
             actions: read
             contents: read
@@ -156,7 +156,6 @@ jobs:
         if: github.ref == 'refs/heads/main'
         needs:
             - version
-            - deploy-betatest
             - deploy-prodtest
         permissions:
             actions: read
