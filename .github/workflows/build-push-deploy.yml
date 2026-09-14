@@ -110,28 +110,9 @@ jobs:
                   var: |
                       image=${{ needs.version.outputs.image }},version=${{ needs.version.outputs.version }}
 
-    deploy-betatest:
-        name: "Deploy Betatest"
-        runs-on: ubuntu-latest
-        if: github.ref == 'refs/heads/main'
-        needs:
-            - version
-            - deploy-dev
-        permissions:
-            actions: read
-            contents: read
-            id-token: write
-        steps:
-            - name: Deploy to betatest
-              uses: kartverket/matrikkel-actions/heimdall-deploy@main
-              with:
-                  cluster: "atkv3-prod"
-                  resource: ".skip/betatest.yaml"
-                  var: |
-                      image=${{ needs.version.outputs.image }},version=${{ needs.version.outputs.version }}
 
-    deploy-prodtest:
-        name: "Deploy prodtest"
+    deploy-qa:
+        name: "Deploy Prodtest/Betatest"
         runs-on: ubuntu-latest
         if: github.ref == 'refs/heads/main'
         needs:
@@ -146,7 +127,7 @@ jobs:
               uses: kartverket/matrikkel-actions/heimdall-deploy@main
               with:
                   cluster: "atkv3-prod"
-                  resource: ".skip/prodtest.yaml"
+                  resource: ".skip/prodtest.yaml,.skip/betatest.yaml"
                   var: |
                       image=${{ needs.version.outputs.image }},version=${{ needs.version.outputs.version }}
 
@@ -156,8 +137,7 @@ jobs:
         if: github.ref == 'refs/heads/main'
         needs:
             - version
-            - deploy-betatest
-            - deploy-prodtest
+            - deploy-qa
         permissions:
             actions: read
             contents: read
