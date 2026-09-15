@@ -7,8 +7,6 @@ metadata:
 spec:
   image: "{{ image }}"
   port: 8089
-  ingresses:
-    - pdf-generator.atkv3-prod.kartverket-intern.cloud
   replicas: 1
 
   env:
