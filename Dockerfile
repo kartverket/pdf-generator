@@ -1,4 +1,4 @@
-FROM gotenberg/gotenberg:8.39.0-chromium@sha256:558943677cf9092df83ff654c2645856dcb9ddf777f359243789688e74f3bcdd
+FROM gotenberg/gotenberg:9.0.0-chromium@sha256:c72867e344cd33be28a165255e445054db93441bfdc0b423042a3de865d4ef41
 
 USER root
 
